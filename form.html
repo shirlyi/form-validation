@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form id="form">
+		<br/>
+    	Username:
+    	<input type="text" id="uname" placeholder="must be 5 characters or more">
+    	<br> Email:
+	    <input type="e-mail" placeholder="yourname@email.com">
+	    <br> Password:
+	    <input type="password" id="password1" placeholder="must be at least 6 characters ">
+	    <br> Repeat password:
+	    <input type="password" id="password2">
+	    <br> Phone Number:
+	    <input type="number" id="phone">
+	    <br> Country:
+	    <input type="text" id="country">
+	    <br>
+		<button type="button" onclick="submitForm()">Submit</button>
+		<div id="divmsg"></div>
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	function submitForm() {
+		var name=document.getElementById("uname");
+		var divmsg=document.getElementById("divmsg");
+		var eror=0
+		var pass1=document.getElementById("password1");
+		var pass2=document.getElementById("password2");
+		var phone=document.getElementById("phone");
+		var country=document.getElementById("country")
+		divmsg.innerHTML="";
+		if(name.value.length<5){
+			divmsg.innerHTML="The supplied username is too short, try again using 5 or more characters <br/>";
+			eror=1;
+		}
+		if(pass1.value.length<6){
+			divmsg.innerHTML+="The password is too short, try again using 6 or more characters <br/>";
+			eror=1;
+		}
+		else if(pass1.value==!pass2.value){
+			divmsg.innerHTML+="The password is not metching";
+			eror=1;
+		}
+		if(phone.value.length>15){
+			divmsg.innerHTML+="The phone number is too long, try again using max 15 characters <br/>";
+			eror=1;
+		}
+		if(country.value!=="Israel"&&country.value!=="USA"){
+			divmsg.innerHTML+="country should be Israel or USA only! <br/>";
+			eror=1;
+			console.log(country.value)
+		}
+		if(eror===1){
+			divmsg.style.color = "red";
+		}
+		else{
+			divmsg.style.color = "green";
+			divmsg.innerHTML="thank you "+name.value;
+		}
+	
+	  
+	}
+	
+	/*if(name.value.length<5){
+		var newdiv=document.createElement('div');
+		var nodetext = document.createTextNode("The supplied username is too short, try again using 5 or more characters");
+		newdiv.appendChild(nodetext);
+		form.appendChild(newdiv);
+	}
+	else{
+		alert("Thank you"+name.value);
+		form.removeChild()
+	}*/
+	</script>
